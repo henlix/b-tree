@@ -1,7 +1,6 @@
 package org.sopt.tree.tree.base;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Node implements Serializable {
 
@@ -29,20 +28,7 @@ public class Node implements Serializable {
 
         return pointer != header ? pointer : null;
     }
-    public ArrayList<Element> elements() {
 
-        ArrayList<Element> elements = new ArrayList<>();
-
-        Element pointer = header;
-
-        while (pointer != null) {
-
-            elements.add(pointer);
-            pointer = pointer.right();
-        }
-
-        return elements;
-    }
 
     public boolean leaf() {
 
@@ -131,7 +117,6 @@ public class Node implements Serializable {
 
         return false;
     }
-
 
 
     public Header header() { return header; }

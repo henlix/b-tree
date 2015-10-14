@@ -29,8 +29,6 @@ public class Tree {
         if (node == null)
             throw new NullPointerException();
 
-        // TODO : 리프 노드가 아닌 경우에 대한 테스트.
-        // 변경 후, 엘리먼트가 위치한 리프 노드가 반환됨.
         if (!node.leaf())
             node = node.exchangeWithLeafElement(e);
 
@@ -38,6 +36,36 @@ public class Tree {
 
         if (node.underflow())
             node.cleanUnderflow();
+    }
+
+    public Element search(int key) {
+
+        return search(key, root);
+    }
+
+    private Element search(int key, Node node) {
+
+        if (node == null)
+            return null;
+
+        Element pointer = node.header();
+
+        while (pointer != null) {
+
+            if (pointer.compareTo(key) == Element.CRITERION_EQ)
+                return pointer;
+
+            if (pointer.right() == null)
+                return search(key, pointer.child());
+
+            if (pointer.right().compareTo(key) == Element.CRITERION_GT)
+                return search(key, pointer.child());
+            else
+                pointer = pointer.right();
+
+        }
+
+        return null;
     }
 
     public void display() {

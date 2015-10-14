@@ -1,6 +1,8 @@
 package org.sopt.tree.model;
 
 import org.sopt.tree.tree.base.Element;
+import org.sopt.tree.tree.base.Header;
+import sun.plugin.dom.exception.InvalidStateException;
 
 import java.util.Random;
 
@@ -52,16 +54,26 @@ public class Data extends Element {
     @Override
     public int compareTo(Object obj) {
 
-        if (!(obj instanceof Data))
-            throw new UnsupportedOperationException();
+        if (obj instanceof Data) {
 
-        Data data = (Data) obj;
+            Data data = (Data) obj;
+            return compare(data.id);
+        }
+        else if (obj instanceof Integer) {
 
-        if (this.id == data.id) return CRITERION_EQ;
-        if (this.id >  data.id) return CRITERION_GT;
-        if (this.id <  data.id) return CRITERION_LT;
+            return compare((Integer) obj);
+        }
 
-        throw new IllegalStateException();
+        throw new UnsupportedOperationException();
+    }
+
+    private int compare(int id) {
+
+        if (this.id == id) return CRITERION_EQ;
+        if (this.id >  id) return CRITERION_GT;
+        if (this.id <  id) return CRITERION_LT;
+
+        throw new UnsupportedOperationException();
     }
 
     /**

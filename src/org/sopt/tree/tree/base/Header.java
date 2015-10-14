@@ -9,6 +9,14 @@ public class Header extends Element {
     @Override
     public String key() { return "h"; }
 
+    @Override
+    public int compareTo(Object obj) { return Element.CRITERION_LT; }
+
+    @Override
+    public void exchange(Object obj) { }
+
+
+
     private Element parent;
 
     public Element parent()  { return parent; }

@@ -86,5 +86,8 @@ public class Program {
 
         tree.delete(sample.get(32));    // 74 : Merge
         tree.display();
+
+
+        System.out.println(">> " + tree.search(15));
     }
 }

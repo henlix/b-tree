@@ -33,10 +33,8 @@ public abstract class Element implements Serializable {
     public void child(Node child) { this.child = child; }
     public void container(Node container) { this.container = container; }
 
-
-    public int compareTo(Object obj) { return CRITERION_EQ; }
-    public void exchange(Object obj) { }
-
+    public abstract int compareTo(Object obj);
+    public abstract void exchange(Object obj);
 
     public void clear() {
 
