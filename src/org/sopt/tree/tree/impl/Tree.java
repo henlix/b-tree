@@ -55,11 +55,10 @@ public class Tree {
             if (pointer.compareTo(key) == Element.CRITERION_EQ)
                 return pointer;
 
-            if (pointer.right() == null)
+            if (pointer.right() == null ||
+                pointer.right().compareTo(key) == Element.CRITERION_GT)
                 return search(key, pointer.child());
 
-            if (pointer.right().compareTo(key) == Element.CRITERION_GT)
-                return search(key, pointer.child());
             else
                 pointer = pointer.right();
 

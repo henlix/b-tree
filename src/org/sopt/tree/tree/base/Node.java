@@ -152,37 +152,6 @@ public class Node implements Serializable {
         return element;
     }
 
-    private Element remove(Element e) {
-
-        Element pointer = header;
-
-        while (pointer.right() != null) {
-
-            pointer = pointer.right();
-
-            if (pointer.equals(e)) {
-
-                if (pointer.right() == null) {
-
-                    pointer.left().right(null);
-                }
-                else {
-
-                    pointer.right().left(pointer.left());
-                    pointer.left().right(pointer.right());
-                }
-
-                pointer.clear();
-                size--;
-
-                return pointer;
-            }
-        }
-
-        return null;
-    }
-
-
     public Node findNodeToInsert(Element e) {
 
         if (leaf())
@@ -338,7 +307,7 @@ public class Node implements Serializable {
         Node dst = precedence.left().child();
 
         precedence.child(src.header.child());
-        container.remove(precedence);
+        container.delete(precedence);
         dst.insert(precedence);
 
         Element pointer = src.dequeue();
